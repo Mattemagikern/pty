@@ -1,0 +1,11 @@
+CentralAddress: lonelycloud.io:8080
+Cluster: pty
+Manifest:
+    - Path: .
+      Branch: origin/master
+      Remote: git@github.com:Mattemagikern/pty.git
+Operations:
+    test:
+      Path: .commands/test.sh
+      Artifacts: []
+      HelpString: Runs tests

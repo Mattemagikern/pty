@@ -1,0 +1,6 @@
+Command-Manifest: .commands/manifest.yml
+Self:
+    path: . #self.path is always set to "."
+    revision: origin/master
+    remotes:
+        origin: git@github.com:Mattemagikern/pty.git
