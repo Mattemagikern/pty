@@ -1,0 +1,4 @@
+# Command manifest
+test:
+  path: .commands/test.sh
+  help: "Runs the tests"
