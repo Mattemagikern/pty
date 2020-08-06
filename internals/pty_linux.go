@@ -76,12 +76,13 @@ func (pty *pty_linux) GetSize() (uint16, uint16, error) {
 }
 
 func (pty *pty_linux) Wait() <-chan error {
-	errs := make(chan error)
+	errs := make(chan error, 1)
 	go func() {
 		defer close(errs)
 		if err := pty.cmd.Wait(); err != nil {
 			pty.Close()
 			errs <- err
+			return
 		}
 		errs <- pty.Close()
 	}()
