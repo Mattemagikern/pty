@@ -58,6 +58,7 @@ func New(c *exec.Cmd) (*pty_linux, error) {
 		pty.restore_stdin()
 		return nil, err
 	}
+	pty.wg.Add(2)
 	go pty.read_thread()
 	go pty.write_thread()
 	return pty, nil
@@ -210,7 +211,6 @@ func (pty *pty_linux) setupStdin() error {
 }
 
 func (pty *pty_linux) read_thread() {
-	pty.wg.Add(1)
 	defer pty.wg.Done()
 	if pty.stdout == nil {
 		return
@@ -226,7 +226,6 @@ func (pty *pty_linux) read_thread() {
 }
 
 func (pty *pty_linux) write_thread() {
-	pty.wg.Add(1)
 	defer pty.wg.Done()
 	if pty.stdin == nil {
 		return
